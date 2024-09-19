@@ -2,19 +2,18 @@ import React from "react";
 import PropTypes from 'prop-types'
 import "./Post.scss";
 
-const Post = ({ title, description, img }) => {
-  const imgSrc =
-    "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg";
+const Post = ({ data, size="" }) => {
 
-  let shortdes = description.slice(0,50) + "..."
+  let shortdes = data.description.slice(0,50) + "..."
+  let style = size 
 
   return (
-    <div className="post-card">
+    <div className={`post-card ${style}`}>
       <div className="img-box">
-        <img src={img} alt="" />
+        <img src={data.img} alt="" />
       </div>
       <div className="details">
-        <h5>{title}</h5>
+        <h5>{data.title}</h5>
         <span>Time</span>
         <p>{shortdes}...</p>
       </div>
@@ -23,9 +22,8 @@ const Post = ({ title, description, img }) => {
 };
 
 Post.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired
+  data: PropTypes.object.isRequired,
+  size: PropTypes.string,
 }
 
 export default Post;

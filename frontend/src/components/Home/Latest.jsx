@@ -1,7 +1,8 @@
 import React from "react";
 import Post from "../Post/Post";
+import "./Home.scss"
 
-const Posts = () => {
+const Latest = () => {
   const data = [
     {
       id: 1,
@@ -40,29 +41,26 @@ const Posts = () => {
     },
   ];
 
-  // const row = { display: "flex", flexDirection: "row" };
-  // const column = {
-  //   flexDirection: "column",
-  //   width: "200px",
-  // };
-  // const flexStyle = { display: "flex", flexDirection: "row", gap: "20px" };
-  // const columnStyle = { display: "block", width: "100%" };
+  let upperRange = 2
+  let lowerRange = 4
+  let vertical = "vertical"
+  const upperRowData = data.slice(0,upperRange)
+  const lowerRowData = data.slice(upperRange,upperRange+lowerRange)
 
   return (
-    <div>
-      <h3>Posts</h3>
-      {data.map((data, index) => (
-          <Post
-            key={index}
-            title={data.title}
-            img={data.img}
-            description={data.description}
-            data={data}
-            // size={index > 2 ? row : column}
-          />
-      ))}
+    <div className="latest">
+      <h3>Latest</h3>
+      <div className="posts">
+        <div className="upper-row flex">
+            {upperRowData.map(d => <Post data={d} key={d.id} size={vertical}/>)}
+        </div>
+        <br />
+        <div className="lower-row flex">
+            {lowerRowData.map(d => <Post data={d} key={d.id}/>)}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Posts;
+export default Latest;
