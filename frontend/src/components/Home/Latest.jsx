@@ -48,7 +48,7 @@ const Latest = () => {
   const lowerRowData = data.slice(upperRange,upperRange+lowerRange)
 
   return (
-    <div className="latest">
+    <div className="latest border">
       <h3>Latest</h3>
       <div className="posts">
         <div className="upper-row flex">

@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer"
 import Latest from './Latest'
 import Post from '../Post/Post'
 import Posts from '../Posts/Posts'
+import Tags from './Tags'
 
 const Home = () => {
   const siteName = "Blogger"
@@ -13,9 +14,12 @@ const Home = () => {
   return (
     <>
       {/* <Navbar siteName={siteName}/> */}
-      <LeftSidebar/>
+      {/* <LeftSidebar/>
       <Latest/>
-      <Posts/>
+      <div className='sidebar-posts border'>
+        <Posts/>
+      </div> */}
+      <Tags />
       {/* <RightSidebar/> */}
       {/* <Footer/> */}
     </>
