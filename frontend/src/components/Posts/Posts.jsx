@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "../Post/Post";
 
-const Posts = () => {
+const Posts = ({isLoggedIn=false}) => {
   const data = [
     {
       id: 1,
@@ -58,6 +58,7 @@ const Posts = () => {
             img={data.img}
             description={data.description}
             data={data}
+            isLoggedIn={isLoggedIn}
             // size={index > 2 ? row : column}
           />
       ))}

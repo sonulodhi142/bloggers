@@ -41,16 +41,16 @@ const Latest = () => {
     },
   ];
 
-  let upperRange = 2
+  let upperRange = 3
   let lowerRange = 4
   let vertical = "vertical"
   const upperRowData = data.slice(0,upperRange)
   const lowerRowData = data.slice(upperRange,upperRange+lowerRange)
 
   return (
-    <div className="latest border">
+    <div className="latest ">
       <h3>Latest</h3>
-      <div className="posts">
+      <div className="posts" >
         <div className="upper-row flex">
             {upperRowData.map(d => <Post data={d} key={d.id} size={vertical}/>)}
         </div>
