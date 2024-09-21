@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Admin.scss";
 import Posts from "../Posts/Posts";
 import { BsGraphUpArrow } from "react-icons/bs";
@@ -6,6 +6,19 @@ import { TfiWrite } from "react-icons/tfi";
 
 const Admin = () => {
   let isLoggedIn = true;
+
+  const [postList, setPostList] = useState([]);
+
+  const handleEvents = {
+    // * Handle edit to update post
+    handleEdit: (postId) => {
+      console.log("dataEdit: ", postId);
+    },
+    // * Handle delete to delete post
+    handleDelete: (postId) => {
+      console.log("dataDeleted: ", postId);
+    },
+  };
 
   return (
     <>
@@ -38,7 +51,7 @@ const Admin = () => {
             </p>
           </div>
         </div>
-        <Posts isLoggedIn={isLoggedIn} />
+        <Posts isLoggedIn={isLoggedIn} handleEvents={handleEvents} />
       </div>
     </>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import Post from "../Post/Post";
 
-const Posts = ({isLoggedIn=false}) => {
+const Posts = ({isLoggedIn=false, handleEvents}) => {
   const data = [
     {
-      id: 1,
+      id: 100,
       title: "React Cat",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
@@ -59,6 +59,7 @@ const Posts = ({isLoggedIn=false}) => {
             description={data.description}
             data={data}
             isLoggedIn={isLoggedIn}
+            handleEvents={handleEvents}
             // size={index > 2 ? row : column}
           />
       ))}
