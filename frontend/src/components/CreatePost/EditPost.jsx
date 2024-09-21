@@ -19,7 +19,7 @@ function EditPost({handleClose, handleShow, show, handleEvents, id}) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit your Post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Form.Label>Title</Form.Label>
