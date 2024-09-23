@@ -4,7 +4,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import "./Post.scss";
 import EditPost from "../CreatePost/EditPost";
 
-const Post = ({ data, size="", isLoggedIn=false, handleEvents }) => {
+const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
 
   const [show, setShow] = useState(false);
 
@@ -13,16 +13,16 @@ const Post = ({ data, size="", isLoggedIn=false, handleEvents }) => {
 
   
 
-  let shortdes = data.description.slice(0,50) + "..."
+  let shortdes = blog.description.slice(0,50) + "..."
   let style = size 
 
   return (
     <div className={`post-card ${style}`}>
       <div className="img-box">
-        <img src={data.img} alt="" />
+        <img src={blog.image} alt="" />
       </div>
       <div className="details">
-        <h5>{data.title}</h5>
+        <h5>{blog.title}</h5>
         <span>Time</span>
         <p>{shortdes}...</p>
       </div>
@@ -37,7 +37,7 @@ const Post = ({ data, size="", isLoggedIn=false, handleEvents }) => {
           handleShow={handleShow}  
           show={show}
           handleEvents={handleEvents}
-          id={data.id}
+          id={blog.id}
         />
 
         {/* <FaRegEdit className="icons edit"/> */}
@@ -48,7 +48,7 @@ const Post = ({ data, size="", isLoggedIn=false, handleEvents }) => {
 };
 
 Post.propTypes = {
-  data: PropTypes.object.isRequired,
+  blog: PropTypes.object.isRequired,
   size: PropTypes.string,
   isLoggedIn: PropTypes.bool,
 }

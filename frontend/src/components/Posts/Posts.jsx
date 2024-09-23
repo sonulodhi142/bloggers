@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Post from "../Post/Post";
 
 const Posts = ({isLoggedIn=false, handleEvents}) => {
@@ -48,16 +48,34 @@ const Posts = ({isLoggedIn=false, handleEvents}) => {
   // const flexStyle = { display: "flex", flexDirection: "row", gap: "20px" };
   // const columnStyle = { display: "block", width: "100%" };
 
+  const apiUrl = 'http://127.0.0.1:8000/blog/blogApi/';
+  const [blogs , setBlogs] = useState([])
+
+ async function fetchApi(){
+
+  const response = await fetch(apiUrl)
+  const result = await response.json()
+
+  setBlogs(result);
+
+ }
+
+ useEffect(()=>{
+  fetchApi();
+ },[])
+
+ console.log(blogs)
+
   return (
     <div>
       <h3>Posts</h3>
-      {data.map((data, index) => (
+      {blogs.map((blog, index) => (
           <Post
             key={index}
-            title={data.title}
-            img={data.img}
-            description={data.description}
-            data={data}
+            title={blog.title}
+            img={blog.img}
+            description={blog.description}
+            blog={blog}
             isLoggedIn={isLoggedIn}
             handleEvents={handleEvents}
             // size={index > 2 ? row : column}
