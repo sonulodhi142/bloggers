@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from .views import BlogsView
 
 urlpatterns = [
-    path('blogApi/', views.BlogApi.as_view(), name='blogApi' )
+    path('blogs/', BlogsView.as_view(), name='blogsView')
 ]

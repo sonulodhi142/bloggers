@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Post from "../Post/Post";
+import axios from 'axios'
 
-const Posts = ({isLoggedIn=false, handleEvents}) => {
+const Posts = ({ isLoggedIn = false, handleEvents }) => {
   const data = [
     {
       id: 100,
@@ -48,38 +49,37 @@ const Posts = ({isLoggedIn=false, handleEvents}) => {
   // const flexStyle = { display: "flex", flexDirection: "row", gap: "20px" };
   // const columnStyle = { display: "block", width: "100%" };
 
-  const apiUrl = 'http://127.0.0.1:8000/blog/blogApi/';
-  const [blogs , setBlogs] = useState([])
+  const apiUrl = "http://127.0.0.1:8000/api/blogs";
+  const [blogs, setBlogs] = useState([]);
 
- async function fetchApi(){
+  function fetchApi() {
+    axios.get(apiUrl)
+    .then((res)=>{
+      setBlogs(res.data);
+    })
+    .catch(err=>console.log(err))
+  } 
 
-  const response = await fetch(apiUrl)
-  const result = await response.json()
+  useEffect(() => {
+    fetchApi();
+  }, []);
 
-  setBlogs(result);
-
- }
-
- useEffect(()=>{
-  fetchApi();
- },[])
-
- console.log(blogs)
+  console.log(blogs);
 
   return (
     <div>
       <h3>Posts</h3>
       {blogs.map((blog, index) => (
-          <Post
-            key={index}
-            title={blog.title}
-            img={blog.img}
-            description={blog.description}
-            blog={blog}
-            isLoggedIn={isLoggedIn}
-            handleEvents={handleEvents}
-            // size={index > 2 ? row : column}
-          />
+        <Post
+          key={index}
+          title={blog.title}
+          img={blog.img}
+          description={blog.description}
+          blog={blog}
+          isLoggedIn={isLoggedIn}
+          handleEvents={handleEvents}
+          // size={index > 2 ? row : column}
+        />
       ))}
     </div>
   );

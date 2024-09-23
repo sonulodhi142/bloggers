@@ -122,7 +122,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
 MEDIA_URL = '/media/'  
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -132,12 +131,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',  # Only JSON format, no HTML view
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',  # Only JSON format, no HTML view
+#     ),
+# }
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  
-]
+]   
