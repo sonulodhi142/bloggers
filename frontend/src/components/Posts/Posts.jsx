@@ -1,45 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Post from "../Post/Post";
-import axios from 'axios'
+import { BlogContext } from "../Context/Context";
 
 const Posts = ({ isLoggedIn = false, handleEvents }) => {
-  const data = [
-    {
-      id: 100,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 2,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 3,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 4,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 5,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-  ];
+
+  const { blogs } = useContext(BlogContext);
 
   // const row = { display: "flex", flexDirection: "row" };
   // const column = {
@@ -49,22 +14,22 @@ const Posts = ({ isLoggedIn = false, handleEvents }) => {
   // const flexStyle = { display: "flex", flexDirection: "row", gap: "20px" };
   // const columnStyle = { display: "block", width: "100%" };
 
-  const apiUrl = "http://127.0.0.1:8000/api/blogs";
-  const [blogs, setBlogs] = useState([]);
+  // const apiUrl = "http://127.0.0.1:8000/api/blogs";
+  // const [blogs, setBlogs] = useState([]);
 
-  function fetchApi() {
-    axios.get(apiUrl)
-    .then((res)=>{
-      setBlogs(res.data);
-    })
-    .catch(err=>console.log(err))
-  } 
+  // function fetchApi() {
+  //   axios.get(apiUrl)
+  //   .then((res)=>{
+  //     setBlogs(res.data);
+  //   })
+  //   .catch(err=>console.log(err))
+  // } 
 
-  useEffect(() => {
-    fetchApi();
-  }, []);
+  // useEffect(() => {
+  //   fetchApi();
+  // }, []);
 
-  console.log(blogs);
+  // console.log(blogs);
 
   return (
     <div>

@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { BlogContext } from "../Context/Context";
 
 const Carousel = () => {
+
+  const { blogs } = useContext(BlogContext);
+
+ 
+  
+
+
   return (
     <div className="container-fluid" style={{height: '300px', marginTop:'100px'}}>
       <div  >

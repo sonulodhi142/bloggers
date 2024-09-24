@@ -48,9 +48,10 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
 };
 
 Post.propTypes = {
-  blog: PropTypes.object.isRequired,
+  blog: PropTypes.object,
   size: PropTypes.string,
   isLoggedIn: PropTypes.bool,
+  handleEvents : PropTypes.object
 }
 
 export default Post;

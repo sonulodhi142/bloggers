@@ -1,62 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import Post from "../Post/Post";
 import "./Home.scss"
+import {BlogContext} from "../Context/Context";
 
 const Latest = () => {
-  const data = [
-    {
-      id: 1,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 2,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 3,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 4,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-    {
-      id: 5,
-      title: "React Cat",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla omnis consequuntur laborum. Nemo quis possimus maxime alias rem quos labore ullam magni aliquid natus tenetur provident vel facere praesentium harum impedit libero exercitationem architecto quia, ex sit enim tempore consequuntur.",
-      img: "https://gratisography.com/wp-content/uploads/2024/01/gratisography-cyber-kitty-800x525.jpg",
-    },
-  ];
+
+  const { blogs } = useContext(BlogContext);
+  
+  
 
   let upperRange = 3
   let lowerRange = 4
   let vertical = "vertical"
-  const upperRowData = data.slice(0,upperRange)
-  const lowerRowData = data.slice(upperRange,upperRange+lowerRange)
+  const upperRowData = blogs.slice(0,upperRange)
+  const lowerRowData = blogs.slice(upperRange,upperRange+lowerRange)
 
   return (
     <div className="latest ">
       <h3>Latest</h3>
       <div className="posts" >
         <div className="upper-row flex">
-            {upperRowData.map(d => <Post data={d} key={d.id} size={vertical}/>)}
+            {upperRowData.map((blog) => <Post blog={blog} key={blog.id} size={vertical}/>)}
         </div>
         <br />
         <div className="lower-row flex">
-            {lowerRowData.map(d => <Post data={d} key={d.id}/>)}
+            {lowerRowData.map(blog => <Post blog={blog} key={blog.id}/>)}
         </div>
       </div>
     </div>

@@ -9,11 +9,11 @@ import Posts from '../Posts/Posts'
 import Carousel from '../carousel/Carousel';
 
 const Home = () => {
-  const siteName = "Blogger"
+  
 
   return (
     <>
-      <Navbar siteName={siteName}/>
+      
       <div className="carousel">
         <Carousel/>
       </div>
@@ -27,7 +27,7 @@ const Home = () => {
         </div>
       </div>
       <div className='sidebar-posts border'>
-        <Posts/>
+      <Posts/>
       </div>
       <Footer/>
     </>
