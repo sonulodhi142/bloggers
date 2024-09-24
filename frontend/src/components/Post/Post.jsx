@@ -11,15 +11,18 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
+  const serverHost = "http://127.0.0.1:8000/"
 
   let shortdes = blog.description.slice(0,50) + "..."
   let style = size 
-
+  
+  
+  let imageAddress = serverHost + blog.image
+  
   return (
     <div className={`post-card ${style}`}>
       <div className="img-box">
-        <img src={blog.image} alt="" />
+        <img src={imageAddress} alt="" />
       </div>
       <div className="details">
         <h5>{blog.title}</h5>

@@ -1,7 +1,15 @@
 from django.contrib import admin
 from django.urls import path
-from .views import BlogsView
+from .views import BlogsViewSet
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path('blogs/', BlogsView.as_view(), name='blogsView')
-]
+router = DefaultRouter()
+router.register("", BlogsViewSet, '')
+urlpatterns = router.urls
+
+
+
+
+# urlpatterns = [
+#     path('blogs/', BlogsViewSet.as_view(), name='blogsView')
+# ]

@@ -5,7 +5,7 @@ import axios from 'axios';
 export const BlogContext = createContext();
 
 const ContextProvider = ({ children }) => {
-    const apiUrl = "http://127.0.0.1:8000/api/blogs";
+    const apiUrl = "http://127.0.0.1:8000/blogs/";
 
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true); 
