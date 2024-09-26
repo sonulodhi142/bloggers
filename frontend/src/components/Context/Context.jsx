@@ -9,7 +9,7 @@ const ContextProvider = ({ children }) => {
 
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true); 
-    const [error, setError] = useState(null);      
+    const [error, setError] = useState(null);  
 
     const fetchApi = async () => {
         try {
@@ -39,7 +39,7 @@ const ContextProvider = ({ children }) => {
     
 
     return (
-        <BlogContext.Provider value={{ blogs, loading, error }}>
+        <BlogContext.Provider value={{ blogs,setBlogs, loading, error, fetchApi }}>
 
             {children}
             

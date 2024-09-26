@@ -5,6 +5,7 @@ import "./universal.css";
 import Navbar from "./components/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   const siteName = "Blogger";

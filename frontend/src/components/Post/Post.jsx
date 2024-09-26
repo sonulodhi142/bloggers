@@ -13,7 +13,11 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
 
   const serverHost = "http://127.0.0.1:8000/"
 
-  let shortdes = blog.description.slice(0,50) + "..."
+
+  let shortdes = blog.description
+  if(shortdes.length > 50)
+    shortdes = blog.description.slice(0,50) + "..."
+  
   let style = size 
   
   
@@ -27,7 +31,7 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
       <div className="details">
         <h5>{blog.title}</h5>
         <span>Time</span>
-        <p>{shortdes}...</p>
+        <p>{shortdes}</p>
       </div>
       
     

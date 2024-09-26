@@ -11,18 +11,22 @@ from rest_framework.response import Response
 #     queryset = Blogs.objects.all()
 #     serializer_class = BlogsSerializer
 
+def fetchBlogs():
+    return Blogs.objects.all()
 
 class BlogsViewSet(ViewSet):
     permission_classes = [permissions.AllowAny]
-    queryset = Blogs.objects.all()
+    queryset = fetchBlogs()
     serializer_class = BlogsSerializer
 
     def list(self, request):
-        serializer = BlogsSerializer(self.queryset, many=True)
+        queryset = fetchBlogs()
+        serializer = BlogsSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        item = self.queryset.get(pk=pk)
+        queryset = fetchBlogs()
+        item = queryset.get(pk=pk)
         serializer = self.serializer_class(item)
         return Response(serializer.data)
     
@@ -36,7 +40,9 @@ class BlogsViewSet(ViewSet):
             return Response({"msg": "data not added", "error": serializer.errors})
 
     def update(self, request, pk=None):
-        serializer = self.serializer_class( data=request.data)
+        item = fetchBlogs().get(pk=pk)
+
+        serializer = self.serializer_class(item, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
@@ -45,7 +51,8 @@ class BlogsViewSet(ViewSet):
             return Response({"msg": "data not added", "error": serializer.errors})
 
     def destroy(self, request, pk=None):
-        item = self.queryset.get(pk=pk)     
+        queryset = fetchBlogs()
+        item = queryset.get(pk=pk)     
         item.delete()
         return Response({"msg": "item deleted"})
 

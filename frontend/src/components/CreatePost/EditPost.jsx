@@ -1,20 +1,66 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
+import { useContext, useState } from "react";
+import { BlogContext } from "../Context/Context";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
 import { FaRegEdit } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
+import axios from "axios";
 
-function EditPost({handleClose, handleShow, show, handleEvents, id}) {
+function EditPost({ handleClose, handleShow, show, handleEvents, id }) {
+  const [postId, setPostId] = useState(id);
+  const { blogs, fetchApi } = useContext(BlogContext);
+  const [inputData, setInputData] = useState({title: "", image: "", description: ""});
 
-  const [postId , setPostId] = useState(id)
-  
+  const getPost = (id) => {
+    for(let blog of blogs){
+      if(blog.id == id)
+        return blog
+    }
+    return -1
+  };
+
+  const handleShowWithData = () => {
+    handleShow();
+
+    const data = getPost(id)
+    setInputData(data);
+  };
+
+  const getInputData = (e) => {
+    const { name, value } = e.target;
+    setInputData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = () => {
+    const apiUrl = `http://127.0.0.1:8000/blogs/${id}/`;
+
+    const form = new FormData();
+    form.append('title', inputData.title);
+    form.append('description', inputData.description);
+    // form.append('image', inputData.image);
+
+    axios.put(apiUrl, form,{
+      headers:{
+        'Content-Type' : 'multipart/form-data'
+      }
+    })
+    .then(()=>{
+      handleClose()
+      fetchApi()
+    })
+
+    handleClose();
+  };
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-       <FaRegEdit/>
+      <Button variant="primary" onClick={handleShowWithData}>
+        <FaRegEdit />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -22,32 +68,29 @@ function EditPost({handleClose, handleShow, show, handleEvents, id}) {
           <Modal.Title>Edit your Post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                name="firstName"
-              />
-              <Form.Label>Write a Post Description</Form.Label>
-              <InputGroup>
-        <InputGroup.Text>With textarea</InputGroup.Text>
-        <Form.Control as="textarea" aria-label="With textarea" />
-      </InputGroup>
-        <Form.Group className="position-relative mb-3">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            value={inputData.title}
+            onChange={getInputData}
+          />
+          <Form.Label>Write a Post Description</Form.Label>
+          <InputGroup>
+            {/* <InputGroup.Text>With textarea</InputGroup.Text> */}
+            <Form.Control
+              as="textarea"
+              aria-label="With textarea"
+              name="description"
+              value={inputData.description}
+              onChange={getInputData}
+            />
+          </InputGroup>
+          <Form.Group className="position-relative mb-3">
             <Form.Label>File</Form.Label>
             <Form.Control
               type="file"
-              required
-              name="file"
-            />
-          </Form.Group>
-          <Form.Group className="position-relative mb-3">
-            <Form.Check
-              required
-              name="terms"
-              label="Agree to terms and conditions"
-              feedbackType="invalid"
-              id="validationFormik106"
-              feedbackTooltip
+              name="image"
             />
           </Form.Group>
         </Modal.Body>
@@ -55,7 +98,7 @@ function EditPost({handleClose, handleShow, show, handleEvents, id}) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={()=>handleEvents.handleEdit(postId)}>
+          <Button variant="primary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>
