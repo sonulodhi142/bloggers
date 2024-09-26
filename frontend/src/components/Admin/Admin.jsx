@@ -3,6 +3,7 @@ import "./Admin.scss";
 import Posts from "../Posts/Posts";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { TfiWrite } from "react-icons/tfi";
+import CreatePost from "../CreatePost/CreatePost";
 
 const Admin = () => {
   let isLoggedIn = true;
@@ -48,6 +49,12 @@ const Admin = () => {
             <TfiWrite className="icon" />
             <p>
               Posts: <span>3244</span>
+            </p>
+          </div>
+          <div className="posts-count">
+            <TfiWrite className="icon" />
+            <p>
+              <CreatePost/>
             </p>
           </div>
         </div>

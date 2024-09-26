@@ -6,6 +6,8 @@ import EditPost from "../CreatePost/EditPost";
 
 const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
 
+  
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
