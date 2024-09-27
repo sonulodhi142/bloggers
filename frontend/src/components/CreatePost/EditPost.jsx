@@ -36,13 +36,22 @@ function EditPost({ handleClose, handleShow, show, handleEvents, id }) {
     }));
   };
 
+  const getImage = (e) => {
+    setInputData((prev) => ({
+      ...prev,
+      image: e.target.files[0],
+    }));
+  };
+
   const handleSave = () => {
     const apiUrl = `http://127.0.0.1:8000/blogs/${id}/`;
 
     const form = new FormData();
     form.append('title', inputData.title);
     form.append('description', inputData.description);
-    // form.append('image', inputData.image);
+    if(inputData.image){
+      form.append('image', inputData.image);
+    }
 
     axios.put(apiUrl, form,{
       headers:{
@@ -91,6 +100,7 @@ function EditPost({ handleClose, handleShow, show, handleEvents, id }) {
             <Form.Control
               type="file"
               name="image"
+              onChange={getImage}
             />
           </Form.Group>
         </Modal.Body>

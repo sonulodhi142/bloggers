@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import PostDesciption from "./components/PostDesciption/PostDesciption";
 
 function App() {
   const siteName = "Blogger";
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/des/:id" element={<PostDesciption/>}/>
       </Routes>
       <div className="footer">
         <Footer />

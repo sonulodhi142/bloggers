@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types'
-import { MdDeleteOutline } from "react-icons/md";
+
 import "./Post.scss";
 import EditPost from "../CreatePost/EditPost";
+import Delete from "./Delete";
+import { Link } from "react-router-dom";
 
 const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
 
@@ -26,13 +28,13 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
   let imageAddress = serverHost + blog.image
   
   return (
-    <div className={`post-card ${style}`}>
+    <div className={`post-card ${style}`} >
       <div className="img-box">
         <img src={imageAddress} alt="" />
       </div>
       <div className="details">
         <h5>{blog.title}</h5>
-        <span>Time</span>
+        <Link to={`/des/${blog.id}`} > <span>Time</span></Link>
         <p>{shortdes}</p>
       </div>
       
@@ -50,7 +52,7 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
         />
 
         {/* <FaRegEdit className="icons edit"/> */}
-        <MdDeleteOutline className="icons delete"/>
+        <Delete id={blog.id}/>
       </div>
     </div>
   );
