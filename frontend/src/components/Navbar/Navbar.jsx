@@ -1,6 +1,7 @@
 import React from 'react'
 import './Navbar.scss'
 import { Link } from 'react-router-dom'
+import Login from '../Admin/Login'
 
 const Navbar = (props) => {
   return (
@@ -28,7 +29,7 @@ const Navbar = (props) => {
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
-              Link
+              <Login/>
             </a>
           </li>
           <li className="nav-item">

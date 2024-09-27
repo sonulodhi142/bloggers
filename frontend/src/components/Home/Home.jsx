@@ -14,9 +14,9 @@ const Home = () => {
   return (
     <>
       
-      <div className="carousel">
+      {/* <div className="carousel">
         <Carousel/>
-      </div>
+      </div> */}
       <LeftSidebar/>
       <div className="latest-box flex" >
         <div className="latest"  >

@@ -4,6 +4,7 @@ import { BlogContext } from "../Context/Context";
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
+
 const Posts = ({ isLoggedIn = false, handleEvents }) => {
 
   const { blogs, loading } = useContext(BlogContext);
@@ -36,23 +37,21 @@ const Posts = ({ isLoggedIn = false, handleEvents }) => {
   //   console.log(blogs[0]['image'])
   // }, 100);
 
-  const spinner = (
-    <Button variant="primary" disabled>
-        <Spinner
-          as="span"
-          animation="grow"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />
-        Loading...
-      </Button>
-  )
+  const spinner = (<Spinner animation="border" variant="primary" />)
 
   return (
     <div>
       <h3>Posts</h3>
-      {loading && spinner}
+      {loading? spinner: blogs.map((blog, index)=>(
+        <Post
+        key={index}
+        blog={blog}
+        isLoggedIn={isLoggedIn}
+        handleEvents={handleEvents}
+        // size={index > 2 ? row : column}
+      />
+      ))}
+      {/* {loading && spinner}
       {blogs.map((blog, index) => (
         <Post
           key={index}
@@ -61,7 +60,7 @@ const Posts = ({ isLoggedIn = false, handleEvents }) => {
           handleEvents={handleEvents}
           // size={index > 2 ? row : column}
         />
-      ))}
+      ))} */}
     </div>
   );
 };
