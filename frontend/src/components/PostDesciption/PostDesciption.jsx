@@ -3,41 +3,50 @@ import { BlogContext } from "../Context/Context";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
+import axios from "axios";
 
 const PostDesciption = () => {
-  
-  const { blogs, loading, fetchApi } = useContext(BlogContext);
-
+  const [loading, setLoading] = useState(true);
+  const [blog, setBlog] = useState({});
   const { id } = useParams();
 
-  useEffect(()=>{
-    fetchApi();
-  }, [])
-
-  const blog = blogs.find((blog) => blog.id === parseInt(id));
-
-  const serverHost = "http://127.0.0.1:8000/";
-
-  let imageAddress = serverHost + blog.image;
+  let serverHost = "http://127.0.0.1:8000/";
+  let card;
+  const show = () => {
+    const apiURL = `http://127.0.0.1:8000/blogs/${id}/`;
+    axios.get(apiURL).then((res) => {
+      setLoading(false);
+      setBlog((b) => {
+        return {
+          ...b,
+          ...res.data,
+          image: serverHost + res.data.image,
+        };
+      });
+    });
+  };
+  useEffect(() => {
+    show();
+  }, []);
 
   const spinner = <Spinner animation="border" variant="primary" />;
 
   return (
     <div>
-      {loading ? (
-        spinner
-      ) : (
+      {!loading ? (
         <Card>
           <Card.Img
             variant="top"
-            src={imageAddress}
-            style={{ width: "100%", height: "50%" }}
+            src={blog.image}
+            style={{ width: "30%", margin: "auto" }}
           />
           <Card.Body>
             <h2>{blog.title}</h2>
             <Card.Text>{blog.description}</Card.Text>
           </Card.Body>
         </Card>
+      ) : (
+        spinner
       )}
     </div>
   );
