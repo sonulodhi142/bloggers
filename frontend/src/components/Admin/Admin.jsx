@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Admin.scss";
 import Posts from "../Posts/Posts";
 import { BsGraphUpArrow } from "react-icons/bs";
-import { TfiWrite } from "react-icons/tfi";
+import { TfiUnderline, TfiWrite } from "react-icons/tfi";
 import CreatePost from "../CreatePost/CreatePost";
+import { BlogContext } from "../Context/Context";
 
 const Admin = () => {
+  const { loading, totalCount, totalPost } = useContext(BlogContext);
   let isLoggedIn = true;
 
-  const [postList, setPostList] = useState([]);
-
   const handleEvents = {
-    // * Handle edit to update post
     handleEdit: (postId) => {
       console.log("dataEdit: ", postId);
     },
-    // * Handle delete to delete post
+
     handleDelete: (postId) => {
       console.log("dataDeleted: ", postId);
     },
@@ -42,19 +41,17 @@ const Admin = () => {
           <div className="views-count">
             <BsGraphUpArrow className="icon" />
             <p>
-              Views: <span>3244</span>
+              Views: <span>{totalCount}</span>
             </p>
           </div>
           <div className="posts-count">
             <TfiWrite className="icon" />
-            <p>
-              Posts: <span>3244</span>
-            </p>
+            <p>Posts:{loading ? <span>Nan</span> : <span>{totalPost}</span>}</p>
           </div>
           <div className="posts-count">
             <TfiWrite className="icon" />
             <p>
-              <CreatePost/>
+              <CreatePost />
             </p>
           </div>
         </div>

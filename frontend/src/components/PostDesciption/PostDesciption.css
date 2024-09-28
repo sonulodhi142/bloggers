@@ -1,0 +1,87 @@
+/* Card Container Styling */
+.card {
+    max-width: 90%;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+  }
+  
+  /* Hover effect for the entire card */
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image Styling */
+  .card-img-top {
+     margin-top: 30px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Ensures the image does not get distorted */
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover effect for image */
+  .card:hover .card-img-top {
+    transform: scale(1.05); /* Slight zoom on hover */
+  }
+  
+  /* Card Body Styling */
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Title Styling */
+  .card-body h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Views Styling */
+  .card-body h5 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  /* Description Text Styling */
+  .card-body p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Responsive design for mobile screens */
+  @media (max-width: 768px) {
+    .card {
+      max-width: 100%;
+      margin: 10px;
+    }
+  
+    .card-body h2 {
+      font-size: 20px;
+    }
+  
+    .card-body h5 {
+      font-size: 16px;
+    }
+  
+    .card-body p {
+      font-size: 14px;
+    }
+  
+    /* Reduce the image height for smaller screens */
+    .card-img-top {
+      height: 200px;
+    }
+  }
+  

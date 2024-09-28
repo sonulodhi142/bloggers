@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types'
-
+import { BsGraphUpArrow } from "react-icons/bs";
 import "./Post.scss";
 import EditPost from "../CreatePost/EditPost";
 import Delete from "./Delete";
@@ -11,6 +11,7 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
   
 
   const [show, setShow] = useState(false);
+  const [view, setView] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,6 +27,11 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
   
   
   let imageAddress = serverHost + blog.image
+
+
+
+  
+
   
   return (
     <div className={`post-card ${style}`} >
@@ -34,8 +40,11 @@ const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
       </div>
       <div className="details">
         <h5>{blog.title}</h5>
-        <Link to={`/des/${blog.id}`} > <span>Time</span></Link>
+        <Link to={`/des/${blog.id}`}  > <span>{blog.created_at}</span></Link>
         <p>{shortdes}</p>
+        <div className="views-area">
+          <BsGraphUpArrow className="icon" /> {blog.views}
+        </div>
       </div>
       
     

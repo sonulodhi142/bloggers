@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Post from "../Post/Post";
 import "./Home.scss"
+
 import {BlogContext} from "../Context/Context";
 import Spinner from 'react-bootstrap/Spinner';
 
