@@ -1,66 +1,44 @@
 import React, { useContext } from "react";
 import Post from "../Post/Post";
 import { BlogContext } from "../Context/Context";
-import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
-
+import Spinner from "react-bootstrap/Spinner";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import './Posts.scss';  // Add a separate CSS/SCSS file for custom styling
 
 const Posts = ({ isLoggedIn = false, handleEvents }) => {
-
   const { blogs, loading } = useContext(BlogContext);
-
-  // const row = { display: "flex", flexDirection: "row" };
-  // const column = {
-  //   flexDirection: "column",
-  //   width: "200px",
-  // };
-  // const flexStyle = { display: "flex", flexDirection: "row", gap: "20px" };
-  // const columnStyle = { display: "block", width: "100%" };
-
-  // const apiUrl = "http://127.0.0.1:8000/api/blogs";
-  // const [blogs, setBlogs] = useState([]);
-
-  // function fetchApi() {
-  //   axios.get(apiUrl)
-  //   .then((res)=>{
-  //     setBlogs(res.data);
-  //   })
-  //   .catch(err=>console.log(err))
-  // } 
-
-  // useEffect(() => {
-  //   fetchApi();
-  // }, []);
-
-  // console.log(blogs);
-  // setTimeout(() => {
-  //   console.log(blogs[0]['image'])
-  // }, 100);
 
   const spinner = (<Spinner animation="border" variant="primary" />)
 
   return (
-    <div>
-      <h3>Posts</h3>
-      {loading? spinner: blogs.map((blog, index)=>(
-        <Post
-        key={index}
-        blog={blog}
-        isLoggedIn={isLoggedIn}
-        handleEvents={handleEvents}
-        // size={index > 2 ? row : column}
-      />
-      ))}
-      {/* {loading && spinner}
-      {blogs.map((blog, index) => (
-        <Post
-          key={index}
-          blog={blog}
-          isLoggedIn={isLoggedIn}
-          handleEvents={handleEvents}
-          // size={index > 2 ? row : column}
-        />
-      ))} */}
+    <div className="posts-container">
+      <Container fluid="md">
+        <h3>All Posts</h3>
+        <Row>
+          {loading ? (
+            <Col className="d-flex justify-content-center align-items-center">
+              {spinner}
+            </Col>
+          ) : (
+            blogs.map((blog, index) => (
+              <Col
+                key={index}
+                md={4}
+                sm={6}
+                className="mb-4"  // Add margin bottom for spacing between cards
+              >
+                <Post
+                  blog={blog}
+                  isLoggedIn={isLoggedIn}
+                  handleEvents={handleEvents}
+                />
+              </Col>
+            ))
+          )}
+        </Row>
+      </Container>
     </div>
   );
 };

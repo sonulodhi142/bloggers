@@ -1,68 +1,54 @@
-import React, {useState} from "react";
-import PropTypes from 'prop-types'
+import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { BsGraphUpArrow } from "react-icons/bs";
 import "./Post.scss";
 import EditPost from "../CreatePost/EditPost";
 import Delete from "./Delete";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-const Post = ({ blog, size="", isLoggedIn=false, handleEvents }) => {
-
-  
-
+const Post = ({ blog, size, isLoggedIn = false, handleEvents }) => {
   const [show, setShow] = useState(false);
-  const [view, setView] = useState();
-
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const serverHost = "http://127.0.0.1:8000/"
+  const serverHost = "http://127.0.0.1:8000/";
+  let shortdes = blog.description.length > 50 ? blog.description.slice(0, 50) + "..." : blog.description;
+  let imageAddress = serverHost + blog.image;
 
-
-  let shortdes = blog.description
-  if(shortdes.length > 50)
-    shortdes = blog.description.slice(0,50) + "..."
-  
-  let style = size 
-  
-  
-  let imageAddress = serverHost + blog.image
-
-
-
-  
-
-  
   return (
-    <div className={`post-card ${style}`} >
-      <div className="img-box">
-        <img src={imageAddress} alt="" />
-      </div>
-      <div className="details">
-        <h5>{blog.title}</h5>
-        <Link to={`/des/${blog.id}`}  > <span>{blog.created_at}</span></Link>
-        <p>{shortdes}</p>
-        <div className="views-area">
-          <BsGraphUpArrow className="icon" /> {blog.views}
-        </div>
-      </div>
-      
-    
-      <div className={`admin-options ${!isLoggedIn && "none"}`}>
-        {/* <CreatePost className='icons edit' handleEvents={handleEvents} id={data.id}/>  */}
-
-
-        <EditPost 
-          handleClose={handleClose} 
-          handleShow={handleShow}  
-          show={show}
-          handleEvents={handleEvents}
-          id={blog.id}
-        />
-
-        {/* <FaRegEdit className="icons edit"/> */}
-        <Delete id={blog.id}/>
-      </div>
+    <div>
+      <Link to={`/des/${blog.id}`} style={{ textDecoration: 'none' }}>
+        <Card style={{display: 'flex'}}>
+          <Card.Img
+            variant="top"
+            style={size === "vertical" ? { height: "200px", objectFit: "cover" } : { height: "9rem", objectFit: "cover" }} 
+            src={imageAddress}
+          />
+          <Card.Body>
+            <Card.Title>{blog.title}</Card.Title>
+            <span>{blog.created_at}</span>
+            <Card.Text>{shortdes}</Card.Text>
+            {isLoggedIn && (
+              <div className="admin-options">
+                <EditPost 
+                  handleClose={handleClose} 
+                  handleShow={handleShow}  
+                  show={show}
+                  handleEvents={handleEvents}
+                  id={blog.id}
+                />
+                <Delete id={blog.id} />
+              </div>
+            )}
+              
+            
+            <p>Views: {blog.views}</p>
+          </Card.Body>
+        </Card>
+      </Link>
     </div>
   );
 };
@@ -71,7 +57,7 @@ Post.propTypes = {
   blog: PropTypes.object,
   size: PropTypes.string,
   isLoggedIn: PropTypes.bool,
-  handleEvents : PropTypes.object
-}
+  handleEvents: PropTypes.object,
+};
 
 export default Post;

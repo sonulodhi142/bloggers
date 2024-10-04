@@ -1,0 +1,68 @@
+/* Posts.scss */
+.posts-container {
+    margin-top: 20px;
+  }
+  
+  .posts-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Adjust the card margins for small devices */
+  @media (max-width: 768px) {
+    .posts-container .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+    .posts-container .col {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  
+  /* Card styling for individual posts */
+  .card {
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card img {
+    object-fit: cover;
+    height: 200px;  /* Ensure all images have the same height */
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .admin-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .none {
+    display: none;
+  }
+  
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
